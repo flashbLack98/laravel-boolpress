@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/home', function () {
+Route::get('/', function () {
     return view('welcome');
 });
 
@@ -28,10 +28,13 @@ Route::namespace('Admin')
     ->group(function(){
 
         Route::get('/', 'HomeController@index')->name('home');
+        Route::resource('post','PostController');
     });
+    
 
 Route::get("{any?}", function() {
     return view("guests.home");
     })->where("any", ".*");
+
 
 

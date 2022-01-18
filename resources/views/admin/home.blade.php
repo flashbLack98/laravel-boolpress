@@ -19,5 +19,11 @@
             </div>
         </div>
     </div>
+
+    <a href="{{ route('admin.post.create') }}">create</a> 
+    <a href="{{ route('admin.post.index') }}">vedi post</a> 
+
+
+   
 </div>
 @endsection
