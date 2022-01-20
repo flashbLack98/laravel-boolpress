@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 use App\Post;
 
@@ -42,6 +43,7 @@ class PostController extends Controller
 
         $newPost = new Post;
         $newPost->fill($data);
+        $newPost->user_id = Auth::user()->id;
         $newPost->save();
 
         return redirect()->route('admin.post.index');
