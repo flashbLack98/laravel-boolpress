@@ -20,7 +20,9 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  */
 import App from './components/App';
 
+import Post from './components/partials/Post';
+
 const app = new Vue({
     el: '#app',
-    render: h => h(App)
+    render: h => h(App, Post)
 });
