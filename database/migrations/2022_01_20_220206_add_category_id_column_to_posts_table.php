@@ -15,7 +15,8 @@ class AddCategoryIdColumnToPostsTable extends Migration
     {
         Schema::table('posts', function (Blueprint $table) {
             $table->foreignId('category_id')
-                ->default(1)
+                /* ->default(1) */
+                ->nullable()
                 ->constrained();
         });
     }
