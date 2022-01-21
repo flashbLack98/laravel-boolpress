@@ -16,7 +16,19 @@
                 <label for="exampleInputEmai2" class="form-label">Description</label>
                 <input value='{{$post['description']}}' type="text" class="form-control" name='description' id="exampleInputEmai2" aria-describedby="emailHelp">
             </div> 
-            <button type="submit" class="btn btn-primary mx-4">Add</button>
+
+            <h5>Categoria:</h5>
+        <select name='category_id' class="form-select" aria-label="Default select example">
+            <option selected>{{ $post->category->name }}</option>
+            @foreach ($categories as $category)
+                
+            <option value="{{$category->id}}">{{ $category->name}}</option>
+            @endforeach
+           
+          </select>
+
+
+            <button type="submit" class="btn btn-primary mx-4">Modifica</button>
             
             
         </form>
