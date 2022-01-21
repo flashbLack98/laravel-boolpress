@@ -32,5 +32,7 @@
             
             
         </form>
+
+        <a href="/admin/post/{{ $post->id }}">Torna ai dettagli</a>
     </div>
 @endsection

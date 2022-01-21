@@ -24,7 +24,15 @@
                 
             <option value="{{$category->id}}">{{ $category->name}}</option>
             @endforeach
-           
+          </select>
+
+          <h5>Tags:</h5>
+        <select name='tags[]' multiple class="form-select" aria-label="Default select example">
+            <option selected>Tags</option>
+            @foreach ($tags as $tag)
+                
+            <option value="{{$tag->id}}">{{ $tag->name}}</option>
+            @endforeach
           </select>
 
 

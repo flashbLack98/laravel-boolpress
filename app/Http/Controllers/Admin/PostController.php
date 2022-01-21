@@ -37,8 +37,11 @@ class PostController extends Controller
     public function create()
     {
         $categories = Category::all();
-        
-        return view('admin.post.create', compact('categories'));
+        $tags = Tag::all();
+        return view('admin.post.create', [
+            'categories' => $categories,
+            'tags' => $tags,
+        ]);
     }
 
     /**
@@ -51,11 +54,13 @@ class PostController extends Controller
     {
         $data = $request->all();
         
-        $newPost = new Post;
-        $newPost->fill($data);
-        $newPost->user_id = Auth::user()->id;
 
+        $newPost = new Post;
+        $newPost->fill($request->all());
+        $newPost->user_id = Auth::user()->id;
+        
         $newPost->save();
+        $newPost->tags()->sync($data['tags']);
 
         return redirect()->route('admin.post.index');
 
@@ -70,10 +75,12 @@ class PostController extends Controller
     public function show(Post $post)
     {
         $categories = Category::all();
+        $tags = Tag::all();
         
         return view('admin.post.show', [
             'post' => $post,
-            'categories' => $categories,    
+            'categories' => $categories,
+            'tags' => $tags,    
         ]);
     }
 

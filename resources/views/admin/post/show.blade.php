@@ -7,6 +7,14 @@
     <h5>{{$post['description']}}</h5>
     <p>categoria : {{ $post->category->name }} </p>
     <p>scritto da : {{ $post->user->name }} </p>
+    {{-- <p>tags : {{ $post->tags->name }} </p> --}}
+
+    <div class="form-group">
+        <label class="for-label">Tag</label>
+        @foreach ($post->tags as $tag)
+            <span class="badge bg-success">{{ $tag->name }}</span>
+        @endforeach
+      </div>
     
 
     <a  href="{{ route('admin.post.edit', $post->id) }}">edit</a> 
