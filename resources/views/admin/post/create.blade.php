@@ -18,18 +18,14 @@
         </div> 
 
         <h5>Categoria:</h5>
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="" id="flexRadioDefault1">
-            <label class="form-check-label" for="flexRadioDefault1">
-              Default radio
-            </label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-            <label class="form-check-label" for="flexRadioDefault2">
-              Default checked radio
-            </label>
-          </div>    
+        <select name='category_id' class="form-select" aria-label="Default select example">
+            <option selected>Categoria</option>
+            @foreach ($categories as $category)
+                
+            <option value="{{$category->id}}">{{ $category->name}}</option>
+            @endforeach
+           
+          </select>
 
 
         <button type="submit" class="btn btn-primary mx-4">Add</button>
