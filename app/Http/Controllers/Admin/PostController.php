@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use App\Post;
+use App\Category;
 
 class PostController extends Controller
 {
@@ -18,7 +19,11 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::all();
-        return view('admin.post.index', compact('posts')) ;
+        $categories = Category::all();
+        return view('admin.post.index', [
+            'posts' => $posts,
+            'categories' => $categories,
+        ]) ;
     }
 
     /**
@@ -44,6 +49,7 @@ class PostController extends Controller
         $newPost = new Post;
         $newPost->fill($data);
         $newPost->user_id = Auth::user()->id;
+        $newPost->
         $newPost->save();
 
         return redirect()->route('admin.post.index');

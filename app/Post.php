@@ -12,10 +12,13 @@ class Post extends Model
         return $this->belongTo('App/User');
     }
     
-    public function categories(){
+    public function category(){
         return $this->belongTo('App/Category');
     }
     
+    public function tags(){
+        return $this->belogsToMany('App/Tag');
+    }
 }
 
 
