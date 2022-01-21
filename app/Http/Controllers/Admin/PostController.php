@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Post;
 use App\Category;
+use App\Tag;
 
 class PostController extends Controller
 {
@@ -20,6 +21,8 @@ class PostController extends Controller
     {
         $posts = Post::all();
         $categories = Category::all();
+        
+      
         return view('admin.post.index', [
             'posts' => $posts,
             'categories' => $categories,
@@ -49,7 +52,8 @@ class PostController extends Controller
         $newPost = new Post;
         $newPost->fill($data);
         $newPost->user_id = Auth::user()->id;
-        $newPost->
+
+        
         $newPost->save();
 
         return redirect()->route('admin.post.index');
@@ -64,7 +68,12 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        return view('admin.post.show', compact('post'));
+        $categories = Category::all();
+        
+        return view('admin.post.show', [
+            'post' => $post,
+            'categories' => $categories,    
+        ]);
     }
 
     /**

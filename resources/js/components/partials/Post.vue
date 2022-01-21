@@ -1,7 +1,8 @@
 <template>
     <li>
-        <h3>{{ post.title }} </h3>
+       <!--  <h3>{{ post.title }} </h3>
         <p>{{ post.description}}</p>
+        <p>{{post.user_id}}</p> -->
     </li>
 </template>
 
@@ -15,7 +16,7 @@ export default {
     },
     data(){
        return{
-           
+        
        };
     },
 }

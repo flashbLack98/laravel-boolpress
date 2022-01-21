@@ -9,15 +9,15 @@ class Post extends Model
     protected $fillable = ['title', 'description'];
 
     public function user(){
-        return $this->belongTo('App/User');
+        return $this->belongsTo('App\User');
     }
     
     public function category(){
-        return $this->belongTo('App/Category');
+        return $this->belongsTo('App\Category');
     }
     
     public function tags(){
-        return $this->belogsToMany('App/Tag');
+        return $this->belongsToMany('App\Tag');
     }
 }
 

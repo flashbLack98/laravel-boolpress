@@ -2,15 +2,24 @@
 @extends('layouts.app')
 
 @section('content')
-<div id="app" class="container">
+
+{{-- utilizzo compomnente Vue --}}
+<div {{-- id="app" --}} class="container">
 
     
-   {{--  @foreach ($posts as $post)
-    <a href="{{ route('admin.post.show', $post->id) }}"><p>{{ $post['title']  }}</p></a>
-    @endforeach   --}}
+    @foreach ($posts as $post)
+    <a class="text-dark" href="{{ route('admin.post.show', $post->id) }}">
+        <h3>{{ $post['title']  }}</h3>
+        <p>{{ $post['description']  }}</p>
+        <p>scritto da: {{ $post->user->name}} </p>
+        <p>Categoria: {{ $post->category->name}} </p>
+
+        <br>
+    </a>
+    @endforeach  
     
     
 </div>
-<script src="{{ asset('js/vue.js') }}" defer></script>
+{{-- <script src="{{ asset('js/vue.js') }}" defer></script> --}}
 <script src="{{ asset('js/app.js') }}" defer></script>
 @endsection
