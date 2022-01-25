@@ -1,8 +1,8 @@
 <template>
-    <li>
-       <!--  <h3>{{ post.title }} </h3>
+    <li class='card'>
+        <a :href="'/admin/post/' + post.id"><h3>{{ post.title }} </h3></a>
         <p>{{ post.description}}</p>
-        <p>{{post.user_id}}</p> -->
+        <p>{{post.user_id}}</p>
     </li>
 </template>
 

@@ -11,7 +11,9 @@ use App\Post;
 class PostController extends Controller
 {
     public function index(){
-        $posts = Post::all(); 
-        return $posts;
+        $posts = Post::with('category')
+        ->with('user:id,name')
+        ->paginate(5); 
+        return response()->json($posts);
     }
 }

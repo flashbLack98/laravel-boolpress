@@ -19,10 +19,10 @@
 
             <h5>Categoria:</h5>
         <select name='category_id' class="form-select" aria-label="Default select example">
+            
             @foreach ($categories as $category)
             
-            
-            <option value="{{$category->id}}" {{-- @if( $category->id === $post->category_id ) selected @endif --}}>{{ $category->name}}</option>
+                <option value="{{$category->id}}" {{-- @if( $category->id === $post->category_id ) selected @endif --}}>{{ $category->name}}</option>
             @endforeach
            
           </select>

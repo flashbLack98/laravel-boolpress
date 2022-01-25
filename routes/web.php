@@ -31,10 +31,10 @@ Route::namespace('Admin')
         Route::resource('post','PostController');
     });
     
-/* 
+
 Route::get("{any?}", function() {
     return view("guests.home");
     })->where("any", ".*");
 
 
- */
+
