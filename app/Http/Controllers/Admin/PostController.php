@@ -93,9 +93,11 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         $categories = Category::all();
+        $tags = Tag::all();
         return view('admin.post.edit', [
             'post' => $post,
-            'categories' =>$categories,
+            'categories' => $categories,
+            'tags' => $tags,
         ]);
     }
 
@@ -110,7 +112,11 @@ class PostController extends Controller
     {
         $data = $request->all();
 
+        /* dd($data); */
+
         $post->update($data);
+
+       /*  $post->tags()->sync($data['tags']); */
 
         return redirect()->route('admin.post.show' , $post->id);
     }
@@ -123,6 +129,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        $post->tags()->detach();
         $post->delete();
 
         return redirect()->route('admin.post.index');

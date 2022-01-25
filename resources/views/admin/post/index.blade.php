@@ -11,7 +11,7 @@
     <a class="text-dark" href="{{ route('admin.post.show', $post->id) }}">
         <h3>{{ $post['title']  }}</h3>
         <p>{{ $post['description']  }}</p>
-        <p>scritto da: {{ $post->user->name}} </p>
+            <p>scritto da: {{ $post['user']['name']}} </p>
         <p>Categoria: {{ $post->category->name}} </p>
 
         <br>

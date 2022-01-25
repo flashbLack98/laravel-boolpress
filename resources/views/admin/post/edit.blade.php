@@ -19,13 +19,23 @@
 
             <h5>Categoria:</h5>
         <select name='category_id' class="form-select" aria-label="Default select example">
-            <option selected>{{ $post->category->name }}</option>
             @foreach ($categories as $category)
-                
-            <option value="{{$category->id}}">{{ $category->name}}</option>
+            
+            
+            <option value="{{$category->id}}" {{-- @if( $category->id === $post->category_id ) selected @endif --}}>{{ $category->name}}</option>
             @endforeach
            
           </select>
+
+          {{-- <h5>Tags:</h5>
+        <select name='tags[]' multiple class="form-select" aria-label="Default select example">
+            <option selected>{{ $post->tags-> }}</option>
+            
+            @foreach ($tags as $tag)
+                
+            <option value="{{$tag->id}}">{{ $tag->name}}</option>
+            @endforeach
+          </select> --}}
 
 
             <button type="submit" class="btn btn-primary mx-4">Modifica</button>
