@@ -20,7 +20,7 @@
 <script>
 
 /* import axios from 'axios'; */
-import Post from './partials/Post.vue';
+import Post from './components/partials/Post.vue';
 
 export default {
     name: "App",
