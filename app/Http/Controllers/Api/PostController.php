@@ -16,4 +16,13 @@ class PostController extends Controller
         ->paginate(5); 
         return response()->json($posts);
     }
+
+    public function show($id){
+        $post = Post::where('id', $id)->first();
+        return response()->json($post);
+    }
 }
+
+/* da dove prendiamo il $id?, 
+    dalla rotta dell'api.php 
+ */

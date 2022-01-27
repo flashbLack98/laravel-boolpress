@@ -1,53 +1,44 @@
 <template>
     <div  class="container">
-        <h1>lista post Guestpage</h1>
-        <ul>
-            <Post v-for='post in posts'
-            :key='post.id'
-            :post='post'>
-            
-            </Post>
-        </ul>
 
-        <button v-if="currentPage > 1"  @click='pagination(currentPage - 1)'>Indietro</button>
+        <!-- NAVBAR -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <router-link class="nav-link" to="/">Home <span class="sr-only">(current)</span></router-link>
+      </li>
+      <li class="nav-item">
+        <router-link class="nav-link" to="/Contacts">Contact</router-link>
+      </li>
+      <li class="nav-item">
+        <router-link class="nav-link" to="/About">About</router-link>
+      </li>
+     
+    </ul>
+  </div>
+</nav>
+        <!-- NAVBAR -->
 
-        <button  v-if="currentPage < lastPage " @click='pagination(currentPage + 1)'>Avanti</button>
+        <h1>Home page</h1>
+        
+        <router-view></router-view>
 
-        <a href="/login">Torna a Homepage</a>
+        <router-link to="/">Torna a Homepage</router-link>
     </div>
 </template>
 
 <script>
 
 /* import axios from 'axios'; */
-import Post from './components/partials/Post.vue';
 
 export default {
     name: "App",
-    components: {Post,},
-    data() {
-        return {
-           posts : [],
-           currentPage : 1,
-           lastPage : '' 
-        };
-    },
-    methods: {
-        pagination(page = 1) {
-            window.axios.get("/api/post?page=" + page ).then((resp) => {
-                this.lastPage = resp.data.last_page;
-                this.posts = resp.data.data;
-                this.currentPage = resp.data.current_page;
-            });
-        },
-    },
-
-    mounted() {
-        this.pagination();
-    },
     
-    
-
 };
 </script>
 

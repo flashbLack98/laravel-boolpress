@@ -21,11 +21,11 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 import App from './App.vue';
 import router from './router.js';
 
-import Home from './pages/Home.vue';
+
 
 
 
 const app = new Vue({
-    el: '#app',/*  router, */
+    el: '#app', router,
     render: h => h(App)
 });

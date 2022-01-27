@@ -1,6 +1,6 @@
 <template>
     <li class='card'>
-        <a :href="'/admin/post/' + post.id"><h3>{{ post.title }} </h3></a>
+        <router-link :to="'/post/' + post.id"><h3>{{ post.title }} </h3></router-link>
         <p>{{ post.description}}</p>
         <p>{{post.user_id}}</p>
     </li>
