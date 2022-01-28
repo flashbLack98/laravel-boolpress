@@ -1,16 +1,23 @@
 <template>
   <div class="container">
-       <ul>
-            <Post v-for='post in posts'
-            :key='post.id'
-            :post='post'>
-            
-            </Post>
-        </ul>
+ 
+    <ul class="list-group py-3">
+        <li v-for="category in categories" :key="category.id" class="list-group-item ">
+            {{ category.name }}
+        </li>
+    </ul>
 
-        <button v-if="currentPage > 1"  @click='pagination(currentPage - 1)'>Indietro</button>
+    <ul>
+        <Post v-for='post in posts'
+        :key='post.id'
+        :post='post'>
+        
+        </Post>
+    </ul>
 
-        <button  v-if="currentPage < lastPage " @click='pagination(currentPage + 1)'>Avanti</button>
+    <button v-if="currentPage > 1"  @click='pagination(currentPage - 1)'>Indietro</button>
+
+    <button  v-if="currentPage < lastPage " @click='pagination(currentPage + 1)'>Avanti</button>
 
   </div>
 </template>
@@ -25,22 +32,29 @@ export default {
         data() {
             return {
             posts : [],
+            categories: [],
             currentPage : 1,
             lastPage : '' 
             };
         },
         methods: {
-            pagination(page = 1) {
+            getPosts(page = 1) {
                 window.axios.get("/api/post?page=" + page ).then((resp) => {
                     this.lastPage = resp.data.last_page;
                     this.posts = resp.data.data;
                     this.currentPage = resp.data.current_page;
                 });
             },
+            getCategories(){
+                window.axios.get('/api/categories').then((resp) => {
+                    this.categories = resp.data;
+                });
+            }
         },
 
         mounted() {
-            this.pagination();
+            this.getPosts();
+            this.getCategories();
         },
     
     

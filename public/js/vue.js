@@ -127,8 +127,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 /* import axios from 'axios'; */
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -268,6 +266,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Index',
@@ -277,12 +282,13 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       posts: [],
+      categories: [],
       currentPage: 1,
       lastPage: ''
     };
   },
   methods: {
-    pagination: function pagination() {
+    getPosts: function getPosts() {
       var _this = this;
 
       var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
@@ -291,10 +297,18 @@ __webpack_require__.r(__webpack_exports__);
         _this.posts = resp.data.data;
         _this.currentPage = resp.data.current_page;
       });
+    },
+    getCategories: function getCategories() {
+      var _this2 = this;
+
+      window.axios.get('/api/categories').then(function (resp) {
+        _this2.categories = resp.data;
+      });
     }
   },
   mounted: function mounted() {
-    this.pagination();
+    this.getPosts();
+    this.getCategories();
   }
 });
 
@@ -832,7 +846,7 @@ var render = function () {
         { staticClass: "navbar navbar-expand-lg navbar-light bg-light" },
         [
           _c("a", { staticClass: "navbar-brand", attrs: { href: "#" } }, [
-            _vm._v("Navbar"),
+            _vm._v("Blog"),
           ]),
           _vm._v(" "),
           _vm._m(0),
@@ -847,11 +861,11 @@ var render = function () {
               _c("ul", { staticClass: "navbar-nav" }, [
                 _c(
                   "li",
-                  { staticClass: "nav-item active" },
+                  { staticClass: "nav-item " },
                   [
                     _c(
                       "router-link",
-                      { staticClass: "nav-link", attrs: { to: "/" } },
+                      { staticClass: "nav-link", attrs: { to: "/Home" } },
                       [
                         _vm._v("Home "),
                         _c("span", { staticClass: "sr-only" }, [
@@ -894,11 +908,7 @@ var render = function () {
         ]
       ),
       _vm._v(" "),
-      _c("h1", [_vm._v("Home page")]),
-      _vm._v(" "),
       _c("router-view"),
-      _vm._v(" "),
-      _c("router-link", { attrs: { to: "/" } }, [_vm._v("Torna a Homepage")]),
     ],
     1
   )
@@ -1097,6 +1107,17 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
+    _c(
+      "ul",
+      { staticClass: "list-group py-3" },
+      _vm._l(_vm.categories, function (category) {
+        return _c("li", { key: category.id, staticClass: "list-group-item " }, [
+          _vm._v("\n          " + _vm._s(category.name) + "\n      "),
+        ])
+      }),
+      0
+    ),
+    _vm._v(" "),
     _c(
       "ul",
       _vm._l(_vm.posts, function (post) {
@@ -17021,7 +17042,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   mode: 'history',
   routes: [{
-    path: '/',
+    path: '/Home',
     name: 'Index',
     component: _pages_Index__WEBPACK_IMPORTED_MODULE_2__["default"]
   }, {
