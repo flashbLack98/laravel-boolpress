@@ -10,10 +10,18 @@ use App\Post;
 
 class PostController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
+        $category = $request->query('category');
+
         $posts = Post::with('category')
         ->with('user:id,name')
         ->paginate(5); 
+        
+        if($category){
+            $posts = $posts->where('category_id', $category);
+            return response()->json($posts);
+        
+        }
         return response()->json($posts);
     }
 

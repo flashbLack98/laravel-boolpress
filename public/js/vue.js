@@ -303,6 +303,7 @@ __webpack_require__.r(__webpack_exports__);
 
       window.axios.get('/api/categories').then(function (resp) {
         _this2.categories = resp.data;
+        console.log(_this2.$route);
       });
     }
   },
@@ -1111,11 +1112,17 @@ var render = function () {
       "ul",
       { staticClass: "list-group py-3" },
       _vm._l(_vm.categories, function (category) {
-        return _c("li", { key: category.id, staticClass: "list-group-item " }, [
-          _vm._v("\n          " + _vm._s(category.name) + "\n      "),
-        ])
+        return _c(
+          "router-link",
+          {
+            key: category.id,
+            staticClass: "list-group-item ",
+            attrs: { to: "" },
+          },
+          [_vm._v("\n          " + _vm._s(category.name) + "\n      ")]
+        )
       }),
-      0
+      1
     ),
     _vm._v(" "),
     _c(

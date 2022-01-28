@@ -2,9 +2,9 @@
   <div class="container">
  
     <ul class="list-group py-3">
-        <li v-for="category in categories" :key="category.id" class="list-group-item ">
+        <router-link to='' v-for="category in categories" :key="category.id" class="list-group-item ">
             {{ category.name }}
-        </li>
+        </router-link>
     </ul>
 
     <ul>
@@ -48,6 +48,7 @@ export default {
             getCategories(){
                 window.axios.get('/api/categories').then((resp) => {
                     this.categories = resp.data;
+                    console.log(this.$route);
                 });
             }
         },
