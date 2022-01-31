@@ -3,6 +3,7 @@
       
       <h3 class="py-5">{{ post.title }}</h3>
       <p> {{ post.description }} </p>
+      <img :src="'/storage/' + post.coverImg " alt="">
   </div>
 </template>
 

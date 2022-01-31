@@ -235,7 +235,51 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      formSubmitted: false,
+      form: {
+        name: '',
+        email: '',
+        message: ''
+      }
+    };
+  },
+  methods: {
+    onSubmit: function onSubmit() {
+      var _this = this;
+
+      window.axios.post('/api/contacts', this.form).then(function (resp) {
+        _this.formSubmitted = true;
+      });
+    }
+  }
+});
 
 /***/ }),
 
@@ -355,6 +399,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
 //
 //
 //
@@ -1105,18 +1150,126 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "container" }, [
+    _c("h1", [_vm._v("Contattaci")]),
+    _vm._v(" "),
+    !_vm.formSubmitted
+      ? _c(
+          "form",
+          {
+            on: {
+              submit: function ($event) {
+                $event.preventDefault()
+                return _vm.onSubmit.apply(null, arguments)
+              },
+            },
+          },
+          [
+            _c("div", { staticClass: "mb-3" }, [
+              _c(
+                "label",
+                { staticClass: "form-label", attrs: { for: "name" } },
+                [_vm._v("Nome")]
+              ),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.name,
+                    expression: "form.name",
+                  },
+                ],
+                staticClass: "form-control",
+                attrs: { type: "text", name: "name", id: "name" },
+                domProps: { value: _vm.form.name },
+                on: {
+                  input: function ($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.form, "name", $event.target.value)
+                  },
+                },
+              }),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "mb-3" }, [
+              _c(
+                "label",
+                { staticClass: "form-label", attrs: { for: "email" } },
+                [_vm._v("Email")]
+              ),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.email,
+                    expression: "form.email",
+                  },
+                ],
+                staticClass: "form-control",
+                attrs: { type: "text", name: "email", id: "email" },
+                domProps: { value: _vm.form.email },
+                on: {
+                  input: function ($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.form, "email", $event.target.value)
+                  },
+                },
+              }),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-floating" }, [
+              _c("label", { attrs: { for: "message" } }, [_vm._v("Messaggio")]),
+              _vm._v(" "),
+              _c("textarea", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.message,
+                    expression: "form.message",
+                  },
+                ],
+                staticClass: "form-control",
+                staticStyle: { height: "100px" },
+                attrs: {
+                  placeholder: "Scrivi il tuo messaggio qui...",
+                  id: "message",
+                },
+                domProps: { value: _vm.form.message },
+                on: {
+                  input: function ($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.form, "message", $event.target.value)
+                  },
+                },
+              }),
+            ]),
+            _vm._v(" "),
+            _c("button", { staticClass: "btn btn-success my-3" }, [
+              _vm._v("Invia"),
+            ]),
+          ]
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.formSubmitted
+      ? _c("div", { staticClass: "alert alert-success" }, [
+          _vm._v(" la sua mail è stata inviata "),
+        ])
+      : _vm._e(),
+  ])
 }
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("h1", [_vm._v("Contacts")]),
-    ])
-  },
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -1277,6 +1430,8 @@ var render = function () {
     _c("h3", { staticClass: "py-5" }, [_vm._v(_vm._s(_vm.post.title))]),
     _vm._v(" "),
     _c("p", [_vm._v(" " + _vm._s(_vm.post.description) + " ")]),
+    _vm._v(" "),
+    _c("img", { attrs: { src: "/storage/" + _vm.post.coverImg, alt: "" } }),
   ])
 }
 var staticRenderFns = []

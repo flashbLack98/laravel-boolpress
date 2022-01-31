@@ -28,3 +28,7 @@ Route::get('/post/{id}', 'Api\PostController@show');
 Route::get('/categories', 'Api\CategoryController@index');
 
 Route::get('/categories/id', 'Api\CategoryController@index');
+
+/* CONTACTS */
+Route::post('/contacts', 'Api\ContactController@store');
+
