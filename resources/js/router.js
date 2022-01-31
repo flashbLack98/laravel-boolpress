@@ -1,10 +1,11 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
-import Index from './pages/Index';
+import Index from './pages/posts/Index';
 import Contacts from './pages/Contacts';
 import About from './pages/About';
-import Show from './pages/Show';
+import Show from './pages/posts/Show';
+import CategoryShow from './pages/category/CategoryShow'
 
 
 Vue.use(VueRouter);
@@ -13,7 +14,7 @@ const router = new VueRouter({
     mode : 'history',
     routes: [
             {
-                path: '/Home',
+                path: '/Posts',
                 name: 'Index',
                 component: Index
             },
@@ -32,6 +33,12 @@ const router = new VueRouter({
                 name: 'Show',
                 component: Show
             },
+            {
+                path: '/categories/:id',
+                name: 'CategoryShow',
+                component: CategoryShow
+            },
+            
         ]
 });
 
