@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 use App\Post;
 use App\Category;
@@ -58,6 +59,8 @@ class PostController extends Controller
         $newPost = new Post;
         $newPost->fill($request->all());
         $newPost->user_id = Auth::user()->id;
+
+        $newPost->coverImg  = Storage::put('posts', $data['coverImg']);
         
         $newPost->save();
         $newPost->tags()->sync($data['tags']);
@@ -112,7 +115,14 @@ class PostController extends Controller
     {
         $data = $request->all();
 
-        /* dd($data); */
+        $oldCoverImg = $post->coverImg; 
+
+        if($oldCoverImg){
+            Storage::delete($oldCoverImg);
+        }
+
+        $post->coverImg  = Storage::put('posts', $data['coverImg']);
+        
 
         $post->update($data);
 

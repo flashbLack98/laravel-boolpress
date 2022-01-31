@@ -9,6 +9,8 @@
     <p>scritto da : {{ $post->user->name }} </p>
     {{-- <p>tags : {{ $post->tags->name }} </p> --}}
 
+    <img src="{{ asset('storage/' . $post->coverImg) }}" alt="Acquario">
+
     <div class="form-group">
         <label class="for-label">Tag</label>
         @foreach ($post->tags as $tag)
